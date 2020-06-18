@@ -18,8 +18,9 @@
   },
   "homepage": "https://github.com/kifko/moviesClub#readme",
   "dependencies": {
-    "express": "^4.17.1",
-    "mysql2": "^2.1.0",
-    "sequelize": "^5.21.13"
+    "bcryptjs": "2.4.3",
+    "express": "4.17.1",
+    "mysql2": "2.1.0",
+    "sequelize": "5.21.13"
   }
 }
