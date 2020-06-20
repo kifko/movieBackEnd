@@ -5,6 +5,12 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     password: DataTypes.STRING
   }, {});
+    //Hiding password 
+  User.prototype.toJSON = function () {
+     const user = this.get();
+     delete user.password;
+     return user;
+   }
   User.associate = function(models) {
     // associations can be defined here
   };

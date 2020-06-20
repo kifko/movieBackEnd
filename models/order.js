@@ -2,6 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Order = sequelize.define('Order', {
     UserId: DataTypes.INTEGER,
+    MovieId: DataTypes.INTEGER,
     RentalDate: DataTypes.DATE,
     ReturnDay: DataTypes.DATE
   }, {});
