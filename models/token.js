@@ -3,9 +3,10 @@ module.exports = (sequelize, DataTypes) => {
   const Token = sequelize.define('Token', {
     token: DataTypes.STRING,
     UserId: DataTypes.INTEGER,
-    revoqued: DataTypes.BOOLEAN
+    revoked: DataTypes.BOOLEAN
   }, {});
   Token.associate = function(models) {
+    // associations can be defined here
   };
   return Token;
 };

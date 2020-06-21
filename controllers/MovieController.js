@@ -1,17 +1,15 @@
 const { Movie } = require('../models');
-
 const MovieController = {
-  async getAllMovies(req,res) {
+  async searchAll(req,res) {
     try {
       const movies = await Movie.findAll()
       res.status(200).send(movies)
-
     } catch (error) {
-      console.log(Error)
-      res.status(500).send({ message : 'Something wrong happend trying to find the user'})
+      console.log(error);
+      res.status(500).send({ message : 'Something wrong happend trying to find the user'});
     }
   },
-  async searchtitle(req,res) {
+  async searchTitle(req,res) {
     try {
       const { title } = req.params
       const movie = await Movie.findOne({
@@ -24,8 +22,8 @@ const MovieController = {
       }
       res.status(200).send(movie);
     } catch (error) {
-      console.log(Error)
-      res.status(500).send({ message : 'An error occurred creating the movie'})
+      console.log(error);
+      res.status(500).send({ message : 'An error occurred creating the movie'});
     }
   },
   async searchid(req,res) {
@@ -35,15 +33,15 @@ const MovieController = {
         where : {
           id : id //Just id ll be enough
         }
-      })
+      });
       if (movieId === null){
-        res.status(400).send( message : 'Movie not found');
+        res.status(400).send({ message : 'Movie not found' });
       }
-      res.status(200).send(movieId)
-    } catch (Error) {
-      console.log(Error)
-      res.status(500).send({ message : 'An error occurred creating the movie'})
+      res.status(200).send(movieId);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({ message : 'An error occurred creating the movie'});
     }
   }
 }
-module.exports = MovieController;
+module.exports = MovieController

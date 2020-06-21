@@ -16,11 +16,20 @@ const auth = async (req,res,next) => {
     if(!user || !tokenFound) {
       return res.status(401).send({ message : 'Non authorized'});
     }
-    req.user = user
-    next()
+    req.user = user;
+    next();
   } catch (error) {
-    console.log(Error)
-    res.status(500).send({ message : 'An error occour authorizing the token'});
+    console.log(error)
+    res.status(403).send({ message : 'An error occour'});
   }
 }
-module.exports = auth;
+const isAdmin = (req,res,next) => {
+  if (req.user.role !== 'admin') {
+    return res.status(403).send({ message : 'No admin privileges'});
+  }
+  next();
+}
+module.exports = {
+  auth,
+  isAdmin
+}

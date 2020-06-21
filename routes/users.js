@@ -1,9 +1,10 @@
 const router = require('express').Router();
-const UserController = require('../controllers/UserController');
-const auth = require('../middleware/auth');
+const UsersController = require('../controllers/UsersController');
+const { auth } = require('../middlewares/auth');
 
-router.get('/giveUsers', UserController.getAllUsers);
-router.get('/signup', UserController.signup);
-router.get('/login', Userontroller.login); //login, o log?? 
+router.get('/', auth, UsersController.getAll);
+router.post('/signup', UsersController.signup);
+router.post('/login', UsersController.login);
+router.delete('/delete/:id', UsersController.delete);
 
-module.exports = router
+module.exports = router;
