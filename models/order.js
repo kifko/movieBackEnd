@@ -3,13 +3,13 @@ module.exports = (sequelize, DataTypes) => {
   const Order = sequelize.define('Order', {
     UserId: DataTypes.INTEGER,
     MovieId: DataTypes.INTEGER,
-    RentalDay: DataTypes.DATE,
-    ReturnDay: DataTypes.DATE
+    RentalDate: DataTypes.DATE,
+    ReturnDate: DataTypes.DATE
   }, {});
   Order.associate = function(models) {
     // associations can be defined here
+    // Order.hasOne(models.Movie);
     // Order.belongsTo(models.User);
-    // Order.belongsTo(models.Movie);
   };
   return Order;
 };

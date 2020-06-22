@@ -1,38 +1,44 @@
-const { User, Token } = require('../models');//requerimos la carpeta models y le pasasmos la funcion user para traer ese archivo
-const bcryptjs = require('bcryptjs');//requerimos la libreria bcrypsjs para la encriptacion de contraseñas
-const jwt = require('jsonwebtoken');//requerimos la libreria jsonwebtoken para la creacion de tokens
+//Including models module to "User&Token"
+const { User, Token } = require('../models');
+//Including bcrypsjs module to encriptations
+const bcryptjs = require('bcryptjs');
+//Including jsonwebtoken module to access token encoder
+const jwt = require('jsonwebtoken');
+
 const UserController = {
     getAll(req, res) {
         User.findAll()
             .then(users => res.send(users))
             .catch(error => {
                 console.error(error);
-                res.status(500).send({ message: 'There was a problem trying to create the user' });
+                res.status(500).send({ 
+                  message: 'There was a problem finding users' 
+                });
             })
     },
-    async signup(req,res) {
+    async signup(req, res) {
         try {
             const hash = await bcryptjs.hash(req.body.password, 9);
             req.body.password = hash;
             const user = await User.create(req.body);
             res.status(200).send(user)
         } catch (error) {
-            console.log(error)
-            res.status(500).send({ message : 'There was a problem trying to add the user'});
+            console.error(error)
+            res.status(500).send({ 
+              message : 'There was a problem creating new user'
+            });
         }
     },
-    async login(req,res) {
+    async login(req, res) {
         try {
             const user = await User.findOne({
-                where: {
-                    email: req.body.email
-                }
+                where: { email: req.body.email }
             });
             const isMatch = await bcryptjs.compare(req.body.password, user.password);
             if (!isMatch) {
-                throw new Error('Has equivocado el password o el usuario')
+                throw new Error('Wrong username or password, please try again')
             }
-            const token = jwt.sign({ id: user.id}, 'kikode', { expiresIn: '1y' });
+            const token = jwt.sign({ id: user.id}, 'kikode', { expiresIn: '.5y' });
             await Token.create({ 
                 token: token,
                 UserId: user.id,
@@ -42,11 +48,11 @@ const UserController = {
         } catch (error) {
             console.error(error);
             return res.status(500).send({
-                message: 'la has cagado en algun momento.'
+                message: 'Something went wrong'
             });
         }
     },
-    async delete(req,res) {
+    async delete(req, res) {
         try {
             const { id } = req.params
             const user = await User.destroy({
@@ -54,10 +60,14 @@ const UserController = {
                     id : id
                 }
             });
-            res.status(200).send({ message : 'Usuario eliminado'});
+            res.status(200).send({ 
+              message : 'User deleted'
+            });
         } catch (error) {
-            console.log(error)
-            res.status(500).send({ message : 'Hay un problema logeando el usuario'});
+            console.error(error)
+            res.status(500).send({ 
+              message : 'There was a problem trying to login'
+            });
         }
     }
 }

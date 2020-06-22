@@ -8,8 +8,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Movie.associate = function(models) {
     // associations can be defined here
-    // Movie.belongsToMany(models.User);
-    // Movie.belongsToMany(models.Order);
+    // Movie.belongsTo(models.User);
+    // Movie.belongsTo(models.Order);
   };
   return Movie;
 };

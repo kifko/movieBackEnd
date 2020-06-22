@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
-const { User, Token} = require('../models');
+const { User, Token } = require('../models');
 
-const auth = async (req,res,next) => {
+const auth = async (req, res, next) => {
   try {
     const token = req.header.authorization;
     const payload = jwt.verify(token, 'SecretToken');
@@ -23,7 +23,7 @@ const auth = async (req,res,next) => {
     res.status(403).send({ message : 'An error occour'});
   }
 }
-const isAdmin = (req,res,next) => {
+const isAdmin = (req, res, next) => {
   if (req.user.role !== 'admin') {
     return res.status(403).send({ message : 'No admin privileges'});
   }

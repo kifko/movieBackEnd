@@ -3,11 +3,11 @@ module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
+    password: DataTypes.STRING
     // phone: DataTypes.INTEGER,
     // adress: DataType.STRING,
     // postalCode: DataType.INTEGER,
     // creditCard: DataType.INTEGER,
-    password: DataTypes.STRING
   }, {});
     //Hiding password and/or anything unrelevant
   User.prototype.toJSON = function () {

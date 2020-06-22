@@ -14,7 +14,7 @@ module.exports = {
       RentalDate: {
         type: Sequelize.DATE
       },
-      ReturnDay: {
+      ReturnDate: {
         type: Sequelize.DATE
       },
       createdAt: {

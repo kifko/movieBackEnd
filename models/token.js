@@ -7,6 +7,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Token.associate = function(models) {
     // associations can be defined here
+    // Token.belongsTo(models.User);
+    // Token.hasOne(models.Order);
   };
   return Token;
 };
