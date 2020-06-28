@@ -1,16 +1,10 @@
 const { Movie } = require('../models');
-const { O_DIRECTORY } = require('constants');
+// const { O_DIRECTORY } = require('constants');
 const MovieController = {
-  async searchAll(req, res) {
+  async getAllMovies(req, res) {
     try {
-      const movies = await Movie.findAll({
-        include: [{
-          model: Director,
-          attributes: { exclude: 
-          ['birthdate']}
-        }]
-      });
-      res.status(200).send(movies)
+      const movies = await Movie.findAll();
+      res.status(200).send(movies);
     } catch (error) {
       console.log(error);
       res.status(500).send({ 
@@ -39,7 +33,7 @@ const MovieController = {
       });
     }
   },
-  async searchid(req, res) {
+  async searchId(req, res) {
     try {
       const { id } = req.params;
       const movieId = await Movie.findOne({

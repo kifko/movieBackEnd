@@ -8,13 +8,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      UserId: {
+      userId: {
         type: Sequelize.INTEGER
       },
-      RentalDate: {
+      rentalDate: {
         type: Sequelize.DATE
       },
-      ReturnDate: {
+      returnDate: {
         type: Sequelize.DATE
       },
       createdAt: {

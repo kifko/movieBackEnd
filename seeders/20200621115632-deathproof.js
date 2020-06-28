@@ -14,7 +14,7 @@ module.exports = {
             return queryInterface.bulkInsert('Movies', movies, {});
         }
         try {
-            // connection to moviedb api with axios
+            // Conecting to moviedb api via axios
             const res = await axios.get('https://api.themoviedb.org/3/movie/top_rated?api_key=d99f0b35daa2cb1b2bc37ddd066fb94a&language=es-Es')
             const moviesJSON = [];
             moviesJSON.push(...res.data.results); 

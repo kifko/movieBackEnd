@@ -12,20 +12,20 @@ const UserController = {
             .catch(error => {
                 console.error(error);
                 res.status(500).send({ 
-                  message: 'There was a problem finding users' 
+                  message: 'Something went wrong finding users' 
                 });
             })
     },
     async signup(req, res) {
         try {
             const hash = await bcryptjs.hash(req.body.password, 9);
-            req.body.password = hash;
+            req.body.password = hash;//Rewritten password via hash
             const user = await User.create(req.body);
             res.status(200).send(user)
         } catch (error) {
             console.error(error)
             res.status(500).send({ 
-              message : 'There was a problem creating new user'
+              message : 'Something went wrong creating new user'
             });
         }
     },
@@ -44,11 +44,11 @@ const UserController = {
                 UserId: user.id,
                 revoked: false
             });
-            res.send({ user, token })
+            res.send({ user, token });
         } catch (error) {
             console.error(error);
             return res.status(500).send({
-                message: 'Something went wrong'
+                message: 'Something went wrong login'
             });
         }
     },
@@ -60,13 +60,11 @@ const UserController = {
                     id : id
                 }
             });
-            res.status(200).send({ 
-              message : 'User deleted'
-            });
+            res.status(200).send({ message : 'User deleted' });
         } catch (error) {
             console.error(error)
             res.status(500).send({ 
-              message : 'There was a problem trying to login'
+              message : 'Something went wrong deleting the account'
             });
         }
     }

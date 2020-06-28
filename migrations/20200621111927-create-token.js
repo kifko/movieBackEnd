@@ -11,7 +11,7 @@ module.exports = {
       token: {
         type: Sequelize.STRING
       },
-      UserId: {
+      userId: {
         type: Sequelize.INTEGER
       },
       revoked: {
