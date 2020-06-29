@@ -8,7 +8,7 @@ const MovieController = {
     } catch (error) {
       console.log(error);
       res.status(500).send({ 
-        message : 'Something went wrong finding the user'
+        message : 'Something went wrong finding movies'
       });
     }
   },
@@ -29,7 +29,7 @@ const MovieController = {
     } catch (error) {
       console.log(error);
       res.status(500).send({ 
-        message : 'Something went wrong creating the movie'
+        message : 'Something wrong happend'
       });
     }
   },
@@ -50,7 +50,7 @@ const MovieController = {
     } catch (error) {
       console.log(error);
       res.status(500).send({ 
-        message : 'Movie not found'
+        message : 'Where is the movie?'
       });
     }
   }
