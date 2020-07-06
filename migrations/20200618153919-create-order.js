@@ -11,6 +11,9 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER
       },
+      movieId: {
+        type: Sequelize.INTEGER
+      },
       rentalDate: {
         type: Sequelize.DATE
       },
@@ -30,4 +33,4 @@ module.exports = {
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('Orders');
   }
-};
+}

@@ -1,10 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Order = sequelize.define('Order', {
-    UserId: DataTypes.INTEGER,
-    MovieId: DataTypes.INTEGER,
-    RentalDate: DataTypes.DATE,
-    ReturnDate: DataTypes.DATE
+    userId: DataTypes.INTEGER,
+    movieId: DataTypes.INTEGER,
+    rentalDate: DataTypes.DATE,
+    returnDate: DataTypes.DATE
   }, {});
   Order.associate = function(models) {
     // associations can be defined here

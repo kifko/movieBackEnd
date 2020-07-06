@@ -12,6 +12,7 @@ const ordersRouter = require('./routes/orders');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors);
+app.options('*',(req, res) => res.send());
 
 app.use('/users', usersRouter);
 app.use('/movies', moviesRouter);

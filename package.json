@@ -26,5 +26,5 @@
     "nodemon": "2.0.4",
     "sequelize": "5.21.13",
     "sequelize-cli": "5.5.1"
-  }
+  }//me falta cors 2.8.5, me sobra nodemon y sequelize-cli
 }
