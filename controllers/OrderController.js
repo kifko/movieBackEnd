@@ -8,7 +8,7 @@ const OrderController = {
             .catch( error => {
                 console.log(error)
                 res.status(500).send({ 
-                    message : 'Something went wrong creating the order '});
+                    message : 'Something went wrong creating the order' });
             });
     },
     async getAllOrders(req,res) {

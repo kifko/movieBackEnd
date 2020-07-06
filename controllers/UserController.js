@@ -38,7 +38,7 @@ const UserController = {
             if (!isMatch) {
                 throw new Error('Wrong username or password, please try again')
             }
-            const token = jwt.sign({ id: user.id}, 'kikode', { expiresIn: '.5y' });
+            const token = jwt.sign({ id: user.id}, 'needapassword', { expiresIn: '2y' });
             await Token.create({ 
                 token: token,
                 UserId: user.id,
@@ -66,6 +66,20 @@ const UserController = {
             res.status(500).send({ 
               message : 'Something went wrong deleting the account'
             });
+        }
+    },
+    async logout(req, res) {
+        try {
+            const id = req.user.id 
+            const user = await User.destroy ({
+                where : {
+                    token : req.headers.authorization
+                }
+            });
+            res.status(200).send({ message : 'Success logout' });
+        } catch (error) {
+            console.log(error)
+            res.status(500).send({ message : 'Logout wasnt possible' });
         }
     }
 }
